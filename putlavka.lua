@@ -7,31 +7,31 @@ function main()
     if not isSampfuncsLoaded() or not isSampLoaded() then return end
     while not isSampAvailable() do wait(100) end
 
-    sampAddChatMessage("{C285FF}[PutLavka]{FFFFFF} загружен  |  Активация: {C285FF}/pl{FFFFFF}  |  Автор: {FFD700}legacy.", -1)
+    sampAddChatMessage("{C285FF}[PutLavka]{FFFFFF} Р·Р°РіСЂСѓР¶РµРЅ  |  РђРєС‚РёРІР°С†РёСЏ: {C285FF}/pl{FFFFFF}  |  РђРІС‚РѕСЂ: {FFD700}legacy.", -1)
 
     sampRegisterChatCommand('pl', function()
         active = not active
-        local status = active and "{00FF00}Включен" or "{FF0000}Выключен"
-        sampAddChatMessage(string.format("{C285FF}[PutLavka]{FFFFFF} Статус: %s", status), -1)
+        local status = active and "{00FF00}Р’РєР»СЋС‡РµРЅ" or "{FF0000}Р’С‹РєР»СЋС‡РµРЅ"
+        sampAddChatMessage(string.format("{C285FF}[PutLavka]{FFFFFF} РЎС‚Р°С‚СѓСЃ: %s", status), -1)
     end)
 
     while true do
         wait(1000)
         if active then
-            sampAddChatMessage("Ищем место для лавки", -1)
+            sampAddChatMessage("РС‰РµРј РјРµСЃС‚Рѕ РґР»СЏ Р»Р°РІРєРё", -1)
             sampSendChat("/lavka")
         end
     end
 end
 
 function samp.onServerMessage(_, text)
-    if text:find('Вы успешно выставили лавку для продажи/покупки товара!') then
-        sampAddChatMessage("{7B3F99}[PutLavka] {5A2D80}Лавка установлена", -1)
+    if text:find('Р’С‹ СѓСЃРїРµС€РЅРѕ РІС‹СЃС‚Р°РІРёР»Рё Р»Р°РІРєСѓ РґР»СЏ РїСЂРѕРґР°Р¶Рё/РїРѕРєСѓРїРєРё С‚РѕРІР°СЂР°!') then
+        sampAddChatMessage("{C285FF}[PutLavka] {FFFFFF}Р›Р°РІРєР° СѓСЃС‚Р°РЅРѕРІР»РµРЅР°", -1)
         active = false
-    elseif text:find('%[Ошибка%] {FFFFFF}Не флуди!') then
+    elseif text:find('%[РћС€РёР±РєР°%] {FFFFFF}РќРµ С„Р»СѓРґРё!') then
         return false
-    elseif text:find('%[Ошибка%] {ffffff}У Вас уже установлена лавка!') then
-        sampAddChatMessage("{C285FF}[PutLavka] {FFFFFF}У вас уже установлена лавка,установка отключёна.", -1)
+    elseif text:find('%[РћС€РёР±РєР°%] {ffffff}РЈ Р’Р°СЃ СѓР¶Рµ СѓСЃС‚Р°РЅРѕРІР»РµРЅР° Р»Р°РІРєР°!') then
+        sampAddChatMessage("{C285FF}[PutLavka] {FFFFFF}РЈ РІР°СЃ СѓР¶Рµ СѓСЃС‚Р°РЅРѕРІР»РµРЅР° Р»Р°РІРєР°,СѓСЃС‚Р°РЅРѕРІРєР° РѕС‚РєР»СЋС‡С‘РЅР°.", -1)
         active = false
     end
 end
